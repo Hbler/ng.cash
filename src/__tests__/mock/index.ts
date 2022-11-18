@@ -6,9 +6,17 @@ export const userWrongUsername: IUser = {
   password: "1234ABCD",
 };
 
-export const userWrongPassword: IUser = {
+export const userShortPassword: IUser = {
   username: "user_one",
   password: "abcd",
+};
+export const userNoNumberPassword: IUser = {
+  username: "user_one",
+  password: "abcdefgH",
+};
+export const userNoUpperPassword: IUser = {
+  username: "user_one",
+  password: "abcd1234",
 };
 
 export const userOne: IUser = {
@@ -39,4 +47,9 @@ export const cashOutWrongReceiver: ICashOut = {
 export const cashOut: ICashOut = {
   receiver: "user_two",
   value: 100,
+};
+
+export const cashOutTwo: ICashOut = {
+  receiver: "user_one",
+  value: 50,
 };

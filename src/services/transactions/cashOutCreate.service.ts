@@ -58,13 +58,11 @@ const cashOutCreateService = async (
     balance: senderAccount.balance + value,
   });
 
-  const transaction = trasactionsRepo.create({
+  const transaction = trasactionsRepo.save({
     debitedAccount: senderAccount,
     creditedAccount: receiverAccount,
     value,
   });
-
-  await trasactionsRepo.save(transaction);
 
   return transaction;
 };

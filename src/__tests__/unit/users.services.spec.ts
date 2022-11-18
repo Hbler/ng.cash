@@ -21,7 +21,7 @@ describe("Testing user services", () => {
     await connection.destroy();
   });
 
-  it("Should be able to create an user", async () => {
+  it("Should be able to create an user with an account with the correct balance", async () => {
     const result = await userCreateService(userOne);
 
     expect(result).toHaveProperty("id");

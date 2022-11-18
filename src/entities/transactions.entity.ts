@@ -18,9 +18,13 @@ export class Transaction {
   @CreateDateColumn()
   createdAt: Date;
 
-  @ManyToOne((type) => Account, (account) => account.debitTransactions)
+  @ManyToOne((type) => Account, (account) => account.debitTransactions, {
+    eager: true,
+  })
   debitedAccount: Account;
 
-  @ManyToOne((type) => Account, (account) => account.creditTransctions)
+  @ManyToOne((type) => Account, (account) => account.creditTransctions, {
+    eager: true,
+  })
   creditedAccount: Account;
 }
