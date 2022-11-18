@@ -9,15 +9,12 @@ export class Account {
   @Column()
   balance: number;
 
-  @OneToMany(
-    (type) => Transaction,
-    (transaction) => transaction.debitedAccountId
-  )
+  @OneToMany((type) => Transaction, (transaction) => transaction.debitedAccount)
   debitTransactions: Transaction[];
 
   @OneToMany(
     (type) => Transaction,
-    (transaction) => transaction.creditedAccountId
+    (transaction) => transaction.creditedAccount
   )
   creditTransctions: Transaction[];
 }

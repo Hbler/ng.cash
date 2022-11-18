@@ -32,18 +32,18 @@ const cashOutCreateService = async (
     throw new AppError("Insufficient funds", 401);
   }
 
-  const recieverUser = await userRepo.findOneBy({ username: receiver });
+  const receiverUser = await userRepo.findOneBy({ username: receiver });
 
-  if (!recieverUser) {
+  if (!receiverUser) {
     throw new AppError("Username not found", 404);
   }
 
-  if (senderUser.username === recieverUser.username) {
+  if (senderUser.username === receiverUser.username) {
     throw new AppError("Can't make a transaction to yourself", 403);
   }
 
   const receiverAccount = await accountRepo.findOneBy({
-    id: recieverUser.account.id,
+    id: receiverUser.account.id,
   });
 
   if (!receiverAccount) {
@@ -59,8 +59,8 @@ const cashOutCreateService = async (
   });
 
   const transaction = trasactionsRepo.create({
-    debitedAccountId: senderAccount,
-    creditedAccountId: receiverAccount,
+    debitedAccount: senderAccount,
+    creditedAccount: receiverAccount,
     value,
   });
 

@@ -19,8 +19,8 @@ export class Transaction {
   createdAt: Date;
 
   @ManyToOne((type) => Account, (account) => account.debitTransactions)
-  debitedAccountId: Account;
+  debitedAccount: Account;
 
   @ManyToOne((type) => Account, (account) => account.creditTransctions)
-  creditedAccountId: Account;
+  creditedAccount: Account;
 }

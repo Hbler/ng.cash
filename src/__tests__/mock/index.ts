@@ -21,17 +21,22 @@ export const userTwo: IUser = {
   password: "1234ABCD",
 };
 
-export const cashOutWrongReciver: ICashOut = {
-  reciver: "wr",
+export const cashOutWrongUsername: ICashOut = {
+  receiver: "wr",
   value: 100,
 };
 
 export const cashOutWrongValue: ICashOut = {
-  reciver: "user_two",
+  receiver: "user_two",
   value: 0,
 };
 
+export const cashOutWrongReceiver: ICashOut = {
+  receiver: "user_one",
+  value: 100,
+};
+
 export const cashOut: ICashOut = {
-  reciver: "user_two",
+  receiver: "user_two",
   value: 100,
 };

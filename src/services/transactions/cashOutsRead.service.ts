@@ -14,7 +14,7 @@ const cashOutsReadService = async (id: string): Promise<Transaction[]> => {
   }
 
   const userTransactions = await trasactionsRepo.find({
-    where: { debitedAccountId: user.account },
+    where: { debitedAccount: user.account },
   });
 
   return userTransactions;

@@ -1,3 +1,4 @@
+import { Between, Brackets, LessThan, MoreThan } from "typeorm";
 import AppDataSource from "../../data-source";
 
 import { Transaction } from "../../entities/transactions.entity";
@@ -16,12 +17,23 @@ const transactionsDateFilterReadService = async (
     throw new Error();
   }
 
-  const transactionDate = new Date(date);
+  const addDays = (d: number, date: Date) => {
+    return new Date(date.valueOf() + 864e5 * d);
+  };
+
+  const transactionDate = new Date(new Date(date).setHours(0, 0, 0, 0));
+  const nextDayDate = addDays(1, transactionDate);
 
   const userTransactions = await trasactionsRepo.find({
     where: [
-      { debitedAccountId: user.account, createdAt: transactionDate },
-      { creditedAccountId: user.account, createdAt: transactionDate },
+      {
+        debitedAccount: user.account,
+        createdAt: Between(transactionDate, nextDayDate),
+      },
+      {
+        creditedAccount: user.account,
+        createdAt: Between(transactionDate, nextDayDate),
+      },
     ],
   });
 
