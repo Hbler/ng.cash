@@ -17,7 +17,7 @@ const cashOutCreateService = async (
   const senderUser = await userRepo.findOneBy({ id: sender_id });
 
   if (!senderUser) {
-    throw new AppError("Bad request", 400);
+    throw new Error();
   }
 
   const senderAccount = await accountRepo.findOneBy({
@@ -29,17 +29,17 @@ const cashOutCreateService = async (
   }
 
   if (senderAccount.balance < value) {
-    throw new AppError("Insufficient funds", 401);
+    throw new AppError("Saldo nsuficiente", 401);
   }
 
   const receiverUser = await userRepo.findOneBy({ username: receiver });
 
   if (!receiverUser) {
-    throw new AppError("Username not found", 404);
+    throw new AppError("Username não encontrado", 404);
   }
 
   if (senderUser.username === receiverUser.username) {
-    throw new AppError("Can't make a transaction to yourself", 403);
+    throw new AppError("Não é possível transferir para a própria conta", 403);
   }
 
   const receiverAccount = await accountRepo.findOneBy({

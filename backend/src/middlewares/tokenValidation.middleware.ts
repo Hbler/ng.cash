@@ -13,7 +13,7 @@ const tokenValidationMiddleware = async (
 
   if (!token || !token.includes("Bearer")) {
     return res.status(401).json({
-      message: "Invalid token",
+      message: "Token inválido",
     });
   }
 
@@ -25,7 +25,7 @@ const tokenValidationMiddleware = async (
     (error: any, decoded: any) => {
       if (error) {
         return res.status(401).json({
-          message: "Invalid token",
+          message: "Token inválido",
         });
       }
 

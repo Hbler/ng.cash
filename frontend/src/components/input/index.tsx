@@ -3,7 +3,7 @@ import { InputContainer } from "./style";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  register: any;
+  field: any;
   placeholder: string;
   label?: string;
   errors?: any;
@@ -13,8 +13,8 @@ export default function Input({
   name,
   placeholder,
   label,
-  register,
   errors,
+  field,
   ...rest
 }: InputProps) {
   return (
@@ -24,8 +24,8 @@ export default function Input({
         name={name}
         id={name}
         placeholder={placeholder}
-        {...register(name)}
         {...rest}
+        {...field.inputProps}
       />
       {!!errors && <small>{errors}</small>}
     </InputContainer>

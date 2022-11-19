@@ -17,13 +17,13 @@ const sessionCreateService = async ({
   const user = await userRepo.findOne({ where: { username: username } });
 
   if (!user) {
-    throw new AppError("Invalid credentials", 403);
+    throw new AppError("Credenciais inválidas", 403);
   }
 
   const matchPassword = await compare(password, user.password);
 
   if (!matchPassword) {
-    throw new AppError("Invalid credentials", 403);
+    throw new AppError("Credenciais inválidas", 403);
   }
 
   const token = jwt.sign(

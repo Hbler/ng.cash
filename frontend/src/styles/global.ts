@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
 *{
     margin: 0;
     padding: 0;
-    transition: 0.2s;
+    transition: 0.3s;
     box-sizing: border-box;
     scroll-behavior: smooth;
     font-family: 'IBM Plex Sans', sans-serif;

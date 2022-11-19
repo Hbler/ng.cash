@@ -30,7 +30,7 @@ interface UserProviderData {
     callback: (route: string) => void
   ) => void;
   logOut: (callback: (route: string) => void) => void;
-  signUp: (newUser: newUser, callback: (route: string) => void) => void;
+  signUp: (newUser: newUser, callback: () => void) => void;
 }
 
 export const UserContext = createContext<UserProviderData>(
@@ -51,7 +51,7 @@ export default function UserProvider({ children }: UserProviderProps) {
     password: string,
     callback: (route: string) => void
   ) => {
-    API.post("login", { username, password })
+    API.post("/login", { username, password })
       .then((res) => {
         setToken(res.data.token);
         localStorage.setItem("@ngcash:token", res.data.token);
@@ -83,7 +83,7 @@ export default function UserProvider({ children }: UserProviderProps) {
       })
       .catch((err) => {
         console.log(err);
-        errorToast(err.message);
+        errorToast(err.response.data.message);
       });
   };
 
@@ -94,13 +94,15 @@ export default function UserProvider({ children }: UserProviderProps) {
     callback("/");
   };
 
-  const signUp = (newUser: newUser, callback: (route: string) => void) => {
+  const signUp = (newUser: newUser, callback: () => void) => {
     API.post("/users", newUser)
       .then((res) => {})
       .catch((err) => {
         console.log(err);
-        errorToast(err.message);
+        errorToast(err.response.data.message);
       });
+
+    callback();
   };
 
   const checkLocalUser = (savedUser: string) => {
