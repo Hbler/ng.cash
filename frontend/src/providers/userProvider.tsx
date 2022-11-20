@@ -52,34 +52,39 @@ export default function UserProvider({ children }: UserProviderProps) {
     callback: (route: string) => void
   ) => {
     API.post("/login", { username, password })
-      .then((res) => {
+      .then(async (res) => {
         setToken(res.data.token);
         localStorage.setItem("@ngcash:token", res.data.token);
 
-        let currentUser: User;
-
         const auth = {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("@ngcash:token")}`,
+            Authorization: `Bearer ${res.data.token}`,
           },
         };
 
-        API.get("/users", auth)
-          .then((res) => {
-            currentUser = new User(res.data.username, res.data.account);
-            localStorage.setItem("@ngcash:user", JSON.stringify(currentUser));
-            setUser(currentUser);
-          })
-          .catch((err: unknown) => console.log(err));
+        try {
+          const userData = await API.get("/users", auth);
 
-        setTimeout(() => {
-          localStorage.removeItem("@ngcash:token");
-          localStorage.removeItem("@ngcash:user");
-          setToken("");
-        }, 86400);
+          const aUser = new User(
+            userData.data.username,
+            userData.data.account,
+            userData.data.id
+          );
 
-        successToast("Login realizado!");
-        callback("/main");
+          setUser(aUser);
+          localStorage.setItem("@ngcash:user", JSON.stringify(aUser));
+
+          setTimeout(() => {
+            localStorage.removeItem("@ngcash:token");
+            localStorage.removeItem("@ngcash:user");
+            setToken("");
+          }, 8.64e7);
+
+          successToast("Login realizado!");
+          callback("/main");
+        } catch (err) {
+          console.log(err);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -96,7 +101,9 @@ export default function UserProvider({ children }: UserProviderProps) {
 
   const signUp = (newUser: newUser, callback: () => void) => {
     API.post("/users", newUser)
-      .then((res) => {})
+      .then((_) => {
+        successToast("Cadastro realizado!");
+      })
       .catch((err) => {
         console.log(err);
         errorToast(err.response.data.message);
@@ -123,8 +130,13 @@ export default function UserProvider({ children }: UserProviderProps) {
       const decode = JSON.parse(atob(savedToken.split(".")[1]));
 
       // verify token expiration
-      if (!(decode.exp * 1000 < new Date().getTime())) {
-        user.updateAccount();
+      if (!(decode.exp * 1000 < new Date().getTime()) && savedUser) {
+        const currentUser = JSON.parse(savedUser);
+        const userInstance = new User(
+          currentUser.username,
+          currentUser.account
+        );
+        userInstance.updateAccount();
       } else {
         localStorage.clear();
         errorToast("Sua sessão expirou...");

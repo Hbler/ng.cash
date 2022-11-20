@@ -28,10 +28,10 @@ export const StyledBtn = styled.button<Props>`
       case "purple":
         return css`
           font-weight: 500;
-          color: ${({ theme: { primary } }) => primary};
+          color: ${({ theme: { secondary } }) => secondary};
           background-color: ${({ theme: { highlight } }) => highlight};
           :hover {
-            background-color: ${({ theme: { secondary } }) => secondary};
+            background-color: ${({ theme: { primary } }) => primary};
           }
         `;
       default:

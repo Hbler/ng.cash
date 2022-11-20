@@ -5,9 +5,10 @@ import { SMain } from "./style";
 import LoginForm from "../../components/form/loginForm";
 import SignUpForm from "../../components/form/signupForm";
 import Btn from "../../components/buttons";
+import { ThemeChange } from "../../components/ui-icons";
 
 export default function LoginPage() {
-  const [willSignUp, setWillSignUp] = useState(true);
+  const [willSignUp, setWillSignUp] = useState(false);
 
   const invertState = () => {
     setWillSignUp(!willSignUp);
@@ -17,6 +18,7 @@ export default function LoginPage() {
     <SMain>
       <div className="container">
         <div>
+          <ThemeChange />
           <h1>NG.CA$H</h1>
           <h2>A Carteira da Nova Geração.</h2>
           <h3>É pra todas as idades!</h3>

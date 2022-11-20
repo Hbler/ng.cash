@@ -55,7 +55,7 @@ const cashOutCreateService = async (
   });
 
   await accountRepo.update(receiverAccount.id, {
-    balance: senderAccount.balance + value,
+    balance: receiverAccount.balance + value,
   });
 
   const transaction = trasactionsRepo.save({

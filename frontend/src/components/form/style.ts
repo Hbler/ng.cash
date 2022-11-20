@@ -8,6 +8,8 @@ export const SForm = styled.form`
   align-items: center;
   flex-direction: column;
 
+  border: 2px solid;
   border-radius: 5px;
-  background-color: ${({ theme: { primary } }) => primary};
+  border-color: ${({ theme: { primary } }) => primary};
+  background-color: ${({ theme: { secondary } }) => secondary};
 `;

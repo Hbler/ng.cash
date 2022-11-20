@@ -43,6 +43,22 @@ export const SMain = styled.main`
       justify-content: center;
 
       border-radius: 5px;
+      position: relative;
+
+      svg {
+        top: 2%;
+        left: 1%;
+
+        font-size: 1.5rem;
+        color: ${({ theme: { secondary } }) => secondary};
+
+        cursor: pointer;
+        position: absolute;
+
+        &:hover {
+          color: ${({ theme: { accent } }) => accent};
+        }
+      }
 
       &:nth-child(2) {
         background-color: ${({ theme: { secondary } }) => secondary};

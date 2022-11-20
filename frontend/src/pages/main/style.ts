@@ -1,3 +1,102 @@
 import styled from "styled-components";
 
-export const Temp = styled.div``;
+export const SMain = styled.main`
+  .container {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: space-between;
+
+    color: ${({ theme: { secondary } }) => secondary};
+
+    & > h1 {
+      top: 50%;
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+      position: absolute;
+    }
+
+    h2 {
+      width: 100%;
+
+      font-weight: 500;
+      font-size: 3.5rem;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      margin: 0 auto;
+
+      font-size: 2.5rem;
+      font-weight: 300;
+    }
+
+    & > div {
+      width: 45%;
+
+      gap: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 5px;
+      position: relative;
+
+      svg {
+        top: 2%;
+        left: 2%;
+
+        font-size: 1.5rem;
+        color: ${({ theme: { primary } }) => primary};
+
+        cursor: pointer;
+        position: absolute;
+
+        &:hover {
+          color: ${({ theme: { accent } }) => accent};
+        }
+
+        &:nth-child(2) {
+          left: unset;
+          right: 2%;
+        }
+      }
+
+      &:nth-child(1) {
+        background-color: ${({ theme: { secondary } }) => secondary};
+
+        h2 {
+          font-weight: 300;
+          text-align: center;
+          color: ${({ theme: { primary } }) => primary};
+        }
+
+        h3 {
+          padding: 0 1rem;
+
+          color: ${({ theme: { primary } }) => primary};
+          text-align: center;
+
+          border: 1px solid;
+          border-radius: 5px;
+          border-color: ${({ theme: { primary } }) => primary};
+        }
+
+        & > small {
+          text-transform: uppercase;
+          color: ${({ theme: { primary } }) => primary};
+        }
+
+        & > button {
+          width: 40%;
+
+          font-size: 1rem;
+
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+`;

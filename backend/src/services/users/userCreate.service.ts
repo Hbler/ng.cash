@@ -19,7 +19,7 @@ const userCreateService = async ({
   });
 
   if (alreadyExists) {
-    throw new AppError("Bad request", 400);
+    throw new AppError("Username indisponível", 400);
   }
 
   const account = accountRepo.create({

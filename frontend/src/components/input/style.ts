@@ -9,23 +9,27 @@ export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
 
+  label {
+    color: ${({ theme: { primary } }) => primary};
+  }
+
   input {
     height: 45px;
     padding: 0 0.8rem;
 
     font-size: 1rem;
-    color: ${({ theme: { secondary } }) => secondary};
+    color: ${({ theme: { primary } }) => primary};
 
     border: none;
     border-radius: 3px 3px 0 0;
     border-bottom: 2px solid;
     border-color: ${({ theme: { highlight } }) => highlight};
-    background-color: ${({ theme: { secondaryA30 } }) => secondaryA30};
+    background-color: ${({ theme: { primaryA30 } }) => primaryA30};
 
     ::placeholder {
       font-weight: 500;
       font-size: 0.8rem;
-      color: ${({ theme: { secondaryA70 } }) => secondaryA70};
+      color: ${({ theme: { primaryA70 } }) => primaryA70};
     }
   }
 
