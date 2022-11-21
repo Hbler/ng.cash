@@ -37,7 +37,7 @@ describe("Testing user services", () => {
   it("Should not be able to create an user with the same username", async () => {
     expect(async () => {
       await userCreateService(userOne);
-    }).rejects.toThrow("Bad request");
+    }).rejects.toThrow("Username indisponível");
   });
 
   it("Should be able to get an user", async () => {

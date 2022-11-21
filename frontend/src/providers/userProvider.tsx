@@ -9,8 +9,10 @@ import {
 } from "react";
 
 import { errorToast, successToast } from "../components/toasts";
+import Transaction from "../models/Transaction";
 import User from "../models/User";
 import API from "../services/API";
+import { ContextTransaction } from "./trasactionProvider";
 
 type UserProviderProps = { children: ReactNode };
 
@@ -45,6 +47,8 @@ export const ContextUser = () => {
 export default function UserProvider({ children }: UserProviderProps) {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({} as User);
+
+  const { setTransactionsList } = ContextTransaction();
 
   const login = (
     username: string,
@@ -96,6 +100,7 @@ export default function UserProvider({ children }: UserProviderProps) {
     localStorage.removeItem("@ngcash:token");
     localStorage.removeItem("@ngcash:user");
     setToken("");
+    setTransactionsList([] as Transaction[]);
     callback("/");
   };
 
@@ -130,14 +135,7 @@ export default function UserProvider({ children }: UserProviderProps) {
       const decode = JSON.parse(atob(savedToken.split(".")[1]));
 
       // verify token expiration
-      if (!(decode.exp * 1000 < new Date().getTime()) && savedUser) {
-        const currentUser = JSON.parse(savedUser);
-        const userInstance = new User(
-          currentUser.username,
-          currentUser.account
-        );
-        userInstance.updateAccount();
-      } else {
+      if (!(!(decode.exp * 1000 < new Date().getTime()) && savedUser)) {
         localStorage.clear();
         errorToast("Sua sessão expirou...");
       }

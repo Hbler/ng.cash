@@ -97,10 +97,10 @@ export default function AppTheme({ children }: Props) {
 
   const getOppositTheme = useCallback(() => {
     if (currentTheme === "light") {
-      localStorage.setItem("@ngcash:palleteMode", "light");
+      localStorage.setItem("@ngcash:palleteMode", "dark");
       return "dark" as PalletMode;
     } else {
-      localStorage.setItem("@ngcash:palleteMode", "dark");
+      localStorage.setItem("@ngcash:palleteMode", "light");
       return "light" as PalletMode;
     }
   }, [currentTheme]);

@@ -8,9 +8,11 @@ import Btn from "../buttons";
 import Input from "../input";
 import { errorToast, successToast } from "../toasts";
 import User from "../../models/User";
+import { ContextTransaction } from "../../providers/trasactionProvider";
 
 export default function CashOutForm() {
   const { user, setUser } = ContextUser();
+  const { getTransactions } = ContextTransaction();
 
   const receiver = useInput({
     name: "receiver",
@@ -34,8 +36,6 @@ export default function CashOutForm() {
         },
       };
 
-      console.log(value);
-
       API.post("/transactions", { receiver, value }, auth)
         .then(async (_) => {
           user.updateAccount();
@@ -46,6 +46,7 @@ export default function CashOutForm() {
           const update = new User(user.username, user.account, user.id);
 
           setUser(update);
+          getTransactions();
           successToast("Cash Out realizado");
         })
         .catch((err) => {

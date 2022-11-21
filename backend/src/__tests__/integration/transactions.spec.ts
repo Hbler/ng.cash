@@ -38,7 +38,7 @@ describe("Testing transactions routes middlewares and controllers", () => {
 
     expect(response.status).toBe(401);
     expect(response.body).toHaveProperty("message");
-    expect(response.body.message).toBe("Invalid token");
+    expect(response.body.message).toBe("Token inválido");
   });
 
   it("Should not be able to make a cash-out transaction with wrong value", async () => {
@@ -77,7 +77,9 @@ describe("Testing transactions routes middlewares and controllers", () => {
 
     expect(response.status).toBe(403);
     expect(response.body).toHaveProperty("message");
-    expect(response.body.message).toBe("Can't make a transaction to yourself");
+    expect(response.body.message).toBe(
+      "Não é possível transferir para a própria conta"
+    );
   });
 
   it("Should be able to make a cash-out transaction", async () => {
@@ -89,7 +91,7 @@ describe("Testing transactions routes middlewares and controllers", () => {
       .send(cashOut)
       .set("Authorization", `Bearer ${login_one.body.token}`);
 
-    const date = new Date();
+    const date = new Date().setHours(0, 0, 0, 0);
 
     expect(response.body).toHaveProperty("id");
     expect(response.body).toHaveProperty("value");
@@ -98,9 +100,7 @@ describe("Testing transactions routes middlewares and controllers", () => {
     expect(response.body).toHaveProperty("creditedAccount");
 
     expect(response.body.value).toBe(cashOut.value);
-    expect(new Date(response.body.createdAt).setHours(0, 0, 0, 0)).toBe(
-      date.setHours(0, 0, 0, 0)
-    );
+    expect(new Date(response.body.createdAt).setHours(0, 0, 0, 0)).toBe(date);
 
     const user_two_balance = await request(app)
       .get("/accounts")

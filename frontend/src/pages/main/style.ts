@@ -18,10 +18,10 @@ export const SMain = styled.main`
     }
 
     h2 {
-      width: 100%;
+      text-align: center;
 
       font-weight: 500;
-      font-size: 3.5rem;
+      font-size: 3.8rem;
       text-transform: uppercase;
     }
 
@@ -44,23 +44,16 @@ export const SMain = styled.main`
       border-radius: 5px;
       position: relative;
 
-      svg {
-        top: 2%;
-        left: 2%;
+      & > p {
+        text-align: center;
 
-        font-size: 1.5rem;
-        color: ${({ theme: { primary } }) => primary};
+        font-size: 2rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        color: ${({ theme: { secondary } }) => secondary};
 
-        cursor: pointer;
-        position: absolute;
-
-        &:hover {
-          color: ${({ theme: { accent } }) => accent};
-        }
-
-        &:nth-child(2) {
-          left: unset;
-          right: 2%;
+        span {
+          font-weight: 500;
         }
       }
 
@@ -69,7 +62,6 @@ export const SMain = styled.main`
 
         h2 {
           font-weight: 300;
-          text-align: center;
           color: ${({ theme: { primary } }) => primary};
         }
 
@@ -84,17 +76,89 @@ export const SMain = styled.main`
           border-color: ${({ theme: { primary } }) => primary};
         }
 
-        & > small {
-          text-transform: uppercase;
-          color: ${({ theme: { primary } }) => primary};
-        }
-
         & > button {
           width: 40%;
 
           font-size: 1rem;
 
           border-radius: 5px;
+        }
+
+        svg {
+          top: 2%;
+          left: 2%;
+
+          font-size: 1.5rem;
+          color: ${({ theme: { primary } }) => primary};
+
+          cursor: pointer;
+          position: absolute;
+
+          &:hover {
+            color: ${({ theme: { accent } }) => accent};
+          }
+
+          &:nth-child(2) {
+            left: unset;
+            right: 2%;
+          }
+        }
+      }
+    }
+
+    .transactions {
+      width: 100%;
+      height: 40vh;
+      padding: 0.8rem 0.8rem 1.5rem;
+
+      gap: 0.5rem;
+      display: flex;
+      flex-direction: column;
+
+      overflow: scroll;
+      border: 1px solid;
+      border-radius: 5px;
+      border-color: ${({ theme: { secondary } }) => secondary};
+    }
+
+    .filters {
+      width: 100%;
+
+      gap: 1rem;
+      display: flex;
+
+      button {
+        margin: unset;
+
+        border-radius: 5px;
+
+        :hover {
+          background-color: ${({ theme: { accent } }) => accent};
+        }
+      }
+    }
+
+    .filter_date {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      input {
+        width: 50%;
+
+        text-align: center;
+      }
+
+      button {
+        width: 40%;
+        margin: unset;
+
+        border-radius: 5px;
+
+        :hover {
+          background-color: ${({ theme: { accent } }) => accent};
         }
       }
     }

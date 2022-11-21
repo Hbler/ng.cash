@@ -21,7 +21,7 @@ const transactionsDateFilterReadService = async (
     return new Date(date.valueOf() + 864e5 * d);
   };
 
-  const transactionDate = new Date(new Date(date).setHours(0, 0, 0, 0));
+  const transactionDate = new Date(date);
   const nextDayDate = addDays(1, transactionDate);
 
   const userTransactions = await trasactionsRepo.find({

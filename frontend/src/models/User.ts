@@ -25,7 +25,7 @@ class User {
       .then((res) => (this.account.balance = res.data?.balance))
       .catch((err) => {
         console.log(err);
-        errorToast(err.response.data.message);
+        errorToast(err.response?.data.message);
       });
   }
 }

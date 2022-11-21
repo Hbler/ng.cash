@@ -31,7 +31,7 @@ describe("Testing transaction services", () => {
 
     await expect(async () => {
       await cashOutCreateService(user_two!.id, { ...cashOut });
-    }).rejects.toThrow("Can't make a transaction to yourself");
+    }).rejects.toThrow("Não é possível transferir para a própria conta");
   });
 
   it("Should be able to create a transaction", async () => {
@@ -60,7 +60,7 @@ describe("Testing transaction services", () => {
 
     await expect(async () => {
       await cashOutCreateService(user!.id, { ...cashOut });
-    }).rejects.toThrow("Insufficient funds");
+    }).rejects.toThrow("Saldo nsuficiente");
   });
 
   it("Should be able to get all transactions", async () => {
