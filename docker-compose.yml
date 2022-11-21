@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  frontend: 
+    build: ./frontend 
+    ports: 
+      - "3000:3000"
+    env_file:
+      - ./frontend/.env
+    container_name: frontend
+    restart: always 
+    links:
+      - backend  
+
+  backend:
+    build: ./backend
+    ports:
+      - "3030:3030"
+    env_file:
+      - ./backend/.env
+    container_name: backend
+    restart: always
+    depends_on:
+      database:
+        condition: service_healthy
+    links:
+      - database
+
+  database:
+    image: postgres:14
+    ports:
+    - "5431:5432"
+    env_file:
+      - .env
+    container_name: database
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    volumes:
+      - database:/var/lib/postgresql/data
+  
+volumes:
+  database:

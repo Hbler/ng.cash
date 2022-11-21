@@ -1,0 +1,24 @@
+{
+  "name": "ng.cash",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd backend && ./node_modules/.bin/jest",
+    "docker:build": "docker-compose -p ng_cash build",
+    "docker:down": "docker-compose -p ng_cash down",
+    "docker:up": "docker-compose -p ng_cash up",
+    "docker:migrate": "docker exec -it backend yarn typeorm migration:run -d src/data-source.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hbler/ng.cash.git"
+  },
+  "keywords": [],
+  "author": "hbler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hbler/ng.cash/issues"
+  },
+  "homepage": "https://github.com/Hbler/ng.cash#readme"
+}
