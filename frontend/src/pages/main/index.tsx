@@ -103,7 +103,6 @@ export default function MainPage() {
                   name="date"
                   id="date"
                   onChange={(e) => {
-                    console.log(e.target.value);
                     setDate(e.target.value);
                   }}
                 />

@@ -6,6 +6,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { errorToast } from "../components/toasts";
 import Transaction from "../models/Transaction";
 import API from "../services/API";
 
@@ -47,6 +48,7 @@ export default function TransactionProvider({
 
       API.get(`/transactions/${date}`, auth)
         .then((res) => {
+          if (res.data.length === 0) errorToast("Sem transações nessa data");
           setTransactionsList([...res.data]);
         })
         .catch((err) => console.log(err.response?.data.message));
@@ -83,6 +85,7 @@ export default function TransactionProvider({
 
       API.get("/transactions/cashouts", auth)
         .then((res) => {
+          if (res.data.length === 0) errorToast("Você ainda não tem Cash-Outs");
           setTransactionsList([...res.data]);
         })
         .catch((err) => console.log(err.response?.data.message));
@@ -101,6 +104,7 @@ export default function TransactionProvider({
 
       API.get("/transactions/cashins", auth)
         .then((res) => {
+          if (res.data.length === 0) errorToast("Você ainda não tem Cash-Ins");
           setTransactionsList([...res.data]);
         })
         .catch((err) => console.log(err.response?.data.message));
