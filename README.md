@@ -2,6 +2,9 @@
 
 ## Início rápido
 
+- **Crie um arquivo .env**
+> Observer em quais pastas existem um arquivo .env.example e crie um arquivo .env preenchendo-o com as variáveis definidas no arquivo .env.example
+
 - **Criar os containers**
 
 ```shell
@@ -13,11 +16,6 @@ $ yarn docker:build
 $ npm run docker:build
 
 ```
-
-- **Crie um arquivo .env**
-> Observer em quais pastas existem um arquivo .env.example e crie um arquivo .env preenchendo-o com as variáveis definidas no arquivo .env.example
-
-
 
 - **Ativar / Desativar os conteiners**
 
