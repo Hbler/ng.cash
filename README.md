@@ -14,6 +14,11 @@ $ npm run docker:build
 
 ```
 
+- **Preencha crie uma .env file**
+> Observer em quais pastas existem um arquivo .env.example e crie um arquivo .env preenchendo-o com as variáveis definidas no arquivo .env.example
+
+
+
 - **Ativar / Desativar os conteiners**
 
 
