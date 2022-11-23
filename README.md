@@ -3,7 +3,7 @@
 ## Início rápido
 
 - **Crie um arquivo .env**
-> Observer em quais pastas existem um arquivo .env.example e crie um arquivo .env preenchendo-o com as variáveis definidas no arquivo .env.example
+> Observer em quais pastas existe um arquivo .env.example e crie um arquivo .env preenchendo-o com as variáveis definidas no arquivo .env.example
 
 - **Criar os containers**
 
