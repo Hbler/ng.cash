@@ -14,7 +14,7 @@ $ npm run docker:build
 
 ```
 
-- **Preencha crie uma .env file**
+- **Crie um arquivo .env**
 > Observer em quais pastas existem um arquivo .env.example e crie um arquivo .env preenchendo-o com as variáveis definidas no arquivo .env.example
 
 
